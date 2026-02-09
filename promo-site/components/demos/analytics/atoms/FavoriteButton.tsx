@@ -28,6 +28,7 @@ export function FavoriteButton({
         fill={isFavorite ? 'currentColor' : 'none'}
         className={isFavorite ? 'text-yellow-400' : 'text-gray-500'}
         aria-hidden="true"
+        aria-label="favorite star"
       />
     </button>
   );

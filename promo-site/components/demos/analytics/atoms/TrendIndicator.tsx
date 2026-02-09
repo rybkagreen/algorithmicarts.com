@@ -39,7 +39,7 @@ export function TrendIndicator({
       )}
       aria-label={`${isPositive ? 'Increased' : 'Decreased'} by ${Math.abs(change)}%`}
     >
-      <Icon className={sizeClasses[size]} aria-hidden="true" />
+      <Icon className={sizeClasses[size]} aria-hidden="true" aria-label={isPositive ? 'trending up' : 'trending down'} />
       {showValue && (
         <span className="font-medium">
           {isPositive ? '+' : ''}{change.toFixed(2)}%
