@@ -1,0 +1,94 @@
+{
+  // Zed Editor Settings for Qwen Code Agent
+  // Place this file at: .zed/settings.json in your project root
+
+  "assistant": {
+    "version": "2",
+    "provider": {
+      "name": "qwen",
+      "model": "coder-model"
+    },
+
+    // Custom instructions for Qwen Code agent
+    "custom_instructions": {
+      "enabled": true,
+      "instructions_file": ".zed/prompts/coding-rules.md"
+    },
+
+    // Context awareness settings
+    "context": {
+      "include_file_tree": true,
+      "include_current_file": true,
+      "include_diagnostics": true,
+      "max_context_length": 1000000
+    }
+  },
+
+  // Language-specific settings
+  "languages": {
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": "prettier",
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+      },
+      "tab_size": 2
+    },
+    "TSX": {
+      "format_on_save": "on",
+      "formatter": "prettier",
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+      },
+      "tab_size": 2
+    }
+  },
+
+  // Linter settings
+  "lsp": {
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "strictNullChecks": true,
+          "strictFunctionTypes": true,
+          "noImplicitAny": true
+        }
+      }
+    },
+    "eslint": {
+      "settings": {
+        "codeActionOnSave": {
+          "enable": true,
+          "mode": "all"
+        }
+      }
+    }
+  },
+
+  // File watching for architecture compliance
+  "file_scan_exclusions": ["**/.git", "**/node_modules", "**/.next", "**/dist", "**/build"],
+
+  // Terminal settings for running tests
+  "terminal": {
+    "font_size": 14,
+    "shell": {
+      "program": "bash"
+    }
+  },
+
+  // Theme and UI
+  "theme": "One Dark",
+  "buffer_font_size": 14,
+  "buffer_font_family": "JetBrains Mono",
+
+  // Project-specific hints for AI
+  "ai_hints": {
+    "architecture": "atomic-design-micro-frontends",
+    "phase": "3-composition-ecosystem",
+    "strict_mode": true,
+    "analytics_required": true,
+    "accessibility_level": "WCAG-2.1-AA"
+  }
+}

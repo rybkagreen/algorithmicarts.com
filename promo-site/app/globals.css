@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background-primary: #0a0a0a;
+  --color-background-secondary: #1a1a1a;
+  --color-background-tertiary: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #666666;
+  --color-accent-primary: #00d9ff;
+  --color-accent-secondary: #a855f7;
+  --color-accent-success: #10b981;
+  --color-accent-error: #ef4444;
+  --color-border-primary: #333333;
+  --color-border-secondary: #444444;
+}
+
+@layer base {
+  * {
+    @apply border-border-primary;
+  }
+
+  body {
+    @apply bg-background-primary text-text-primary antialiased;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-background-tertiary rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-secondary;
+  }
+}
+
+@layer utilities {
+  /* Grid pattern background */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(51, 51, 51, 0.3) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent;
+  }
+
+  /* Glow effect */
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  }
+
+  .glow-accent-hover:hover {
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+  }
+}
+
+@layer components {
+  /* Container */
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-20 px-4;
+  }
+}
+
+/* Dashboard specific styles */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.widget-transition {
+  transition: all 0.3s ease;
+}
+
+.widget-appear {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.widget-skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Grid visualization during resize */
+body.resizing::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Widget resize handle feedback */
+.resize-handle-hover {
+  background-color: rgba(0, 217, 255, 0.9) !important;
+  transform: scale(1.1);
+}
+
+/* Smooth transitions for widget content adaptation */
+.widget-content-adapt {
+  transition: all 0.2s ease;
+}
+
+/* Visual feedback for widget controls */
+.widget-controls button:hover {
+  background-color: rgba(0, 217, 255, 0.2);
+  transform: scale(1.05);
+}
